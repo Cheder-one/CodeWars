@@ -12,4 +12,9 @@ function getCount(str) {
   return strVowels.length
 }
 
+//-------------Refactoring-------------
+function getCount(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u' ]
+  return str.split('').filter(letters => vowels.includes(letters)).length
+}
 console.log(getCount("abracadabra"));
