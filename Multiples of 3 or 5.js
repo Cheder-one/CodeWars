@@ -1,25 +1,32 @@
-const calcNaturalNumbersBelowNum = (num, ...multiples) => {
-  let divisionResult = [];
-
-  for (let i = 0; i < num; i++) {
-    multiples.forEach((el) => {
-
-    });
-  }
-}
-
-const numBelow10 = calcNaturalNumbersBelowNum(10, 3, 5)
-console.log(numBelow10);
-
-// Нужно узнать результаты деления чисел до 10-ти на 3 и 5
-
-// function solution(number){
-
+// function solution(num){
+//   const multiples = [3, 5]
+//   return Array.from({length: num - 1}, (_, i) => i + 1)
+//     .filter(num => multiples.some(multiple => num % multiple === 0))
+//     .reduce((previous, current) => previous + current, 0)
 // }
 
-// console.log(solution(3));
-// console.log(solution(10));
-// console.log(solution(17));
-// console.log(solution(23));
+console.log(solution(3));
+console.log(solution(10));
+console.log(solution(17));
+console.log(solution(23));
 
-// https://www.codewars.com/kata/514b92a657cdc65150000006/train/javascript
+//------------Another solution--------------
+// Это более правильный и быстрый код
+
+function solution(number){
+  let sum = 0;
+  for (let i = 1; i < number; i++) {
+    if (i % 3 === 0 || i % 5 === 0) {
+      sum += i
+    }
+  }
+  if (number < 0) {
+    return 0
+  }
+  return sum
+}
+
+console.log(solution(3));
+console.log(solution(10));
+console.log(solution(17));
+console.log(solution(23));
