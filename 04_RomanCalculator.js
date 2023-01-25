@@ -1,15 +1,13 @@
 function calculator(string) {
   const allowedOperators = ['+', '-', '*', '/'];
   const splittedStr = string.split(/\s+/);
-  // console.log(splittedStr);
-  const rome =[
-    I, II, III, IV, V,
-    VI, VII, VIII, IX, X
-  ] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  // console.log(splittedStr[0] + splittedStr[1] + splittedStr[2]);
-  
+  const rome = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)$/;
+  const 
+    [I, II, III, IV, V, VI, VII, VIII, IX, X] = 
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ 
   // for (const el of splittedStr) {
-  //   if (!allowedOperators.includes(el) && !el.match(/\d+/)) {
+  //   if (!allowedOperators.includes(el) && !el.match(/^\d+$/)) {
   //     console.log(`Invalid operator ${el}`)
   //     return
   //   }
@@ -21,15 +19,24 @@ function calculator(string) {
       return
     }
   };
-  for (const el of ) {
-    if (string.includes(rome)) {
-      
-    }
-  }
 
+
+
+  
   const result = Math.floor(eval(string));
+  
+  const convertToRoman = (res) => {
+    const roman = 
+      ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+    
+    
+
+
+  }
+  convertToRoman(result) // TODO вставить в if === roman
+  
   console.log(result.toString());
-  return result.toString()
+  // return result.toString()
 }
 
 // console.log((`${numbers[0]} ${operator} ${numbers[2]}`));
