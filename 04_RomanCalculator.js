@@ -1,30 +1,46 @@
 function calculator(string) {
   const allowedOperators = ['+', '-', '*', '/'];
-  const splittedStr = string.split(/\s+/); 
+  const splittedStr = string.split(/\s+/);
+  // console.log(splittedStr);
+  const rome =[
+    I, II, III, IV, V,
+    VI, VII, VIII, IX, X
+  ] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  // console.log(splittedStr[0] + splittedStr[1] + splittedStr[2]);
+  
+  // for (const el of splittedStr) {
+  //   if (!allowedOperators.includes(el) && !el.match(/\d+/)) {
+  //     console.log(`Invalid operator ${el}`)
+  //     return
+  //   }
+  // };
 
-  for (const el of splittedStr) { 
-    if (!allowedOperators.includes(el) && !el.match(/^-?\d+\.?\d*$/)) {
-      console.log(`Invalid operator ${el}`)
+  for (const el of splittedStr) {
+    if (el <= 0 || el > 10) {
+      console.log('Операнды должны лежать в диапазоне от 1 до 10');
       return
+    }
+  };
+  for (const el of ) {
+    if (string.includes(rome)) {
+      
     }
   }
 
-  // check for invalid operands
-  
-
-  const result = eval(string);
-  console.log(result);
+  const result = Math.floor(eval(string));
+  console.log(result.toString());
+  return result.toString()
 }
 
-  // console.log((`${numbers[0]} ${operator} ${numbers[2]}`));
-  
-  // const operator = string.split(/\s+/)
-  //   .filter((el, i) => {
-  //     return allowedOperators.includes(el)
-  //   });
+// console.log((`${numbers[0]} ${operator} ${numbers[2]}`));
 
-  // const numbers = string.split(/\s+/)
-  //   .filter(el => !operator.includes(el)).map((el) => Number(el));
+// const operator = string.split(/\s+/)
+//   .filter((el, i) => {
+//     return allowedOperators.includes(el)
+//   });
+
+// const numbers = string.split(/\s+/)
+//   .filter(el => !operator.includes(el)).map((el) => Number(el));
 
 
 
@@ -32,10 +48,10 @@ function calculator(string) {
 
 
 // // 'должен работать с десятичными числами (сложение)'
-//   calculator('1 + 1') // ('2');
-//   calculator('1 + 2') // ('3');
-//   calculator('4 + 3') // ('7');
-//   calculator('10 + 10') // ('20');
+// calculator('1 + 1') // ('2');
+// calculator('1 + 2') // ('3');
+// calculator('4 + 3') // ('7');
+// calculator('10 + 10') // ('20');
 
 
 // // 'должен работать с десятичными числами (вычитание)'
@@ -55,41 +71,41 @@ function calculator(string) {
 
 
 
-// 'должен работать с десятичными числами (деление)'
-  calculator('10 % 1') // ('10');
-  calculator('6 / 2') // ('3');
-  calculator('5 / 4') // ('1');
-  calculator('0 / 4') // ('0');
+// // 'должен работать с десятичными числами (деление)'
+//   calculator('10 % 1') // ('10');
+//   calculator('6 / 2') // ('3');
+//   calculator('5 / 4') // ('1');
+//   calculator('0 / 4') // ('0');
 
 
-// // 'должен работать с римскими числами (сложение)'
-//   calculator('I + I') // ('II');
-//   calculator('I + II') // ('III');
-//   calculator('IV + III') // ('VII');
-//   calculator('X + X') // ('XX');
-//   calculator('X + IX') // ('XIX');
+// 'должен работать с римскими числами (сложение)'
+calculator('I + I') // ('II');
+calculator('I + II') // ('III');
+calculator('IV + III') // ('VII');
+calculator('X + X') // ('XX');
+calculator('X + IX') // ('XIX');
 
 
 // // 'должен работать с римскими числами (вычитание)'
-//   calculator('X - I') // ('IX');
-//   calculator('V - IV') // ('I');
-//   calculator('IV - IV') // ('');
-//   calculator('I - X') // ('');
-//   calculator('IV - V') // ('');
+// calculator('X - I') // ('IX');
+// calculator('V - IV') // ('I');
+// calculator('IV - IV') // ('');
+// calculator('I - X') // ('');
+// calculator('IV - V') // ('');
 
 
 // // 'должен работать с римскими числами (умножение)'
-//   calculator('X * X') // ('C');
-//   calculator('IV * X') // ('XL');
-//   calculator('V * I') // ('V');
-//   calculator('V * V') // ('XXV');
+// calculator('X * X') // ('C');
+// calculator('IV * X') // ('XL');
+// calculator('V * I') // ('V');
+// calculator('V * V') // ('XXV');
 
 
 // // 'должен работать с римскими числами (деление)'
-//   calculator('X / I') // ('X');
-//   calculator('VI / II') // ('III');
-//   calculator('V / IV') // ('I');
-//   calculator('II / IV') // ('');
+// calculator('X / I') // ('X');
+// calculator('VI / II') // ('III');
+// calculator('V / IV') // ('I');
+// calculator('II / IV') // ('');
 
 
 // // 'должен выбрасывать ошибку на некорректных данных'
