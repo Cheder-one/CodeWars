@@ -1,15 +1,41 @@
 function calculator(string) {
-  const res = string.split(/[-+*/]/).map((el) => Number(el))
+  const allowedOperators = ['+', '-', '*', '/'];
+  const splittedStr = string.split(/\s+/); 
 
-  console.log(res);
+  for (const el of splittedStr) { 
+    if (!allowedOperators.includes(el) && !el.match(/^-?\d+\.?\d*$/)) {
+      console.log(`Invalid operator ${el}`)
+      return
+    }
+  }
+
+  // check for invalid operands
+  
+
+  const result = eval(string);
+  console.log(result);
 }
 
+  // console.log((`${numbers[0]} ${operator} ${numbers[2]}`));
+  
+  // const operator = string.split(/\s+/)
+  //   .filter((el, i) => {
+  //     return allowedOperators.includes(el)
+  //   });
 
-// 'должен работать с десятичными числами (сложение)'
-  calculator('1 + 1') // ('2');
-  calculator('1 + 2') // ('3');
-  calculator('4 + 3') // ('7');
-  calculator('10 + 10') // ('20');
+  // const numbers = string.split(/\s+/)
+  //   .filter(el => !operator.includes(el)).map((el) => Number(el));
+
+
+
+
+
+
+// // 'должен работать с десятичными числами (сложение)'
+//   calculator('1 + 1') // ('2');
+//   calculator('1 + 2') // ('3');
+//   calculator('4 + 3') // ('7');
+//   calculator('10 + 10') // ('20');
 
 
 // // 'должен работать с десятичными числами (вычитание)'
@@ -29,11 +55,11 @@ function calculator(string) {
 
 
 
-// // 'должен работать с десятичными числами (деление)'
-//   calculator('10 / 1') // ('10');
-//   calculator('6 / 2') // ('3');
-//   calculator('5 / 4') // ('1');
-//   calculator('2 / 4') // ('0');
+// 'должен работать с десятичными числами (деление)'
+  calculator('10 % 1') // ('10');
+  calculator('6 / 2') // ('3');
+  calculator('5 / 4') // ('1');
+  calculator('0 / 4') // ('0');
 
 
 // // 'должен работать с римскими числами (сложение)'
