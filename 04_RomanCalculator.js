@@ -1,3 +1,6 @@
+https://replit.com/@Cheder-one/RomanCalculator#calculator.js
+https://kataacademy.github.io/kata-program.io/frontend-calculator
+
 function calculator(string) {
   const allowedOperators = ['+', '-', '*', '/'];
   const splittedStr = string.split(/\s+/);
