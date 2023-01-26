@@ -1,25 +1,55 @@
 function calculator(string) {
-  const allowedOperators = ['+', '-', '*', '/'];
   const splittedStr = string.split(/\s+/);
-  const romanCheck = 
-    /M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})/;
   const romanNumbers = [''];
+  const romanCheck =
+    /M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})/;
+  
+  const allowedOperators = /^[\/\*\-\+]$/;
+  const allNumbers = /^-?\d+\.?\d*$/
+  const rangeArabic = /^([1-9]|10)$/;
+  const rangeRoman = /^(X|(IX|IV|V?I{0,3}))$/;
 
-  const createRomanNumbers = () => {
+  // Проверка на наличие строго двух операндов и одного оператора
+  const operator = splittedStr.filter(el => allowedOperators.test(el))
+  const operands = splittedStr.filter(el => allNumbers.test(el))
+
+  console.log('operands:',operands);
+
+  // Проверка валидности оператора 
+  if (!allowedOperators.test(operator)) {
+    return ('Invalid operator!')
+  }
+
+  // Проверка вида системы счета 
+  for (let i = 0; i < splittedStr.length; i++) {
+    if (allNumbers.test(splittedStr[i])) {
+      
+    }
+  }
+
+
+  // Проверка диапазона чисел
+
+
+  // Проверка числа на целое число
+
+ 
+
+  function createRomanNumbers() {
     const lookup = {
-      M:  1000,
+      M: 1000,
       CM: 900,
-      D:  500,
+      D: 500,
       CD: 400,
-      C:  100,
+      C: 100,
       XC: 90,
-      L:  50,
+      L: 50,
       XL: 40,
-      X:  10,
+      X: 10,
       IX: 9,
-      V:  5,
+      V: 5,
       IV: 4,
-      I:  1
+      I: 1
     };
 
     const generateRomanNumbers = (num) => {
@@ -27,7 +57,7 @@ function calculator(string) {
       for (const el in lookup) {
         while (num >= lookup[el]) {
           result += el;
-          num -= lookup[el]
+          num -= lookup[el];
         }
       }
       return result
@@ -37,45 +67,98 @@ function calculator(string) {
       romanNumbers.push(generateRomanNumbers(i))
     }
   }
-  createRomanNumbers()
+  createRomanNumbers();
 
+  // Находим в римском массиве совпадения переданных римских чисел, тем самым узнаем значение числа по индексу
   for (let i = 0; i < splittedStr.length; i++) {
     const romanValue = romanNumbers.indexOf(splittedStr[i])
     if (romanValue > 0) {
-      splittedStr[i] = romanValue
+      splittedStr[i] = romanValue;
     }
   }
+  const arabicResult = Math.floor(eval(splittedStr.join('')));
+  let romanResult = romanNumbers[arabicResult];
 
-  const resultOperation = Math.floor(eval(splittedStr.join('')));
 
-  try {
-    
-  } catch (error) {
-    
+  if (arabicResult < 0) {
+    romanResult = ''
+    return romanResult
   }
-
-  console.log(resultOperation);
-
+  return romanResult
 }
 
-// calculator('1 + 1') // ('2');
-// calculator('10 - 1') // ('9');
-// calculator('4 - 4') // ('0');
-// calculator('4 - 5') // ('-1');
-// calculator('10 * 10') // ('100');
-// calculator('10 % 1') // ('10');
-// calculator('0 / 4') // ('0');
+console.log(calculator('1 + 1')) // ('2');
+console.log(calculator('10 - 1')) // ('9');
+console.log(calculator('4 - 4')) // ('0');
+console.log(calculator('4 - 5')) // ('-1');
+console.log(calculator('10 * 10')) // ('100');
+console.log(calculator('10 % 1')) // ('10');
+console.log(calculator('0 / 4')) // ('0');
 
-calculator('I + I') // ('II');
-calculator('X - I') // ('IX');
-calculator('IV - IV') // ('');
-calculator('I - X') // ('');
-calculator('X * X') // ('C');
-calculator('V * I') // ('V');
-calculator('X / I') // ('X');
-calculator('VI / II') // ('III');
-calculator('V / IV') // ('I');
-calculator('II / IV') // ('');
+// console.log(calculator('I + I')) // ('II');
+// console.log(calculator('X - I')) // ('IX');
+// console.log(calculator('IV - IV')) // ('');
+// console.log(calculator('I - X')) // ('');
+// console.log(calculator('X * X')) // ('C');
+// console.log(calculator('V * I')) // ('V');
+// console.log(calculator('X / I')) // ('X');
+// console.log(calculator('VI / II')) // ('III');
+// console.log(calculator('II / IV')) // ('');
+// console.log(calculator('V / IV')) // ('I');
+// console.log(calculator('V % IV')) // ('10');
+
+
+  // console.log(calculator('1 + 1')); // );('2');
+  // console.log(calculator('1 + 2')); // ('3');
+  // console.log(calculator('4 + 3')); // ('7');
+  // console.log(calculator('10 + 10')); // ('20');
+
+
+  // console.log(calculator('10 - 1')); // ('9');
+  // console.log(calculator('5 - 4')); // ('1');
+  // console.log(calculator('4 - 4')); // ('0');
+  // console.log(calculator('1 - 10')); // ('-9');
+  // console.log(calculator('4 - 5')); // ('-1');
+
+
+
+  // console.log(calculator('10 * 10')); // ('100');
+  // console.log(calculator('4 * 10')); // ('40');
+  // console.log(calculator('5 * 1')); // ('5');
+  // console.log(calculator('5 * 5')); // ('25');
+
+
+
+  // console.log(calculator('10 / 1')); // ('10');
+  // console.log(calculator('6 / 2')); // ('3');
+  // console.log(calculator('5 / 4')); // ('1');
+  // console.log(calculator('2 / 4')); // ('0');
+
+
+  // console.log(calculator('I + I'))  // ('II')
+  // console.log(calculator('I + II'))  // ('III')
+  // console.log(calculator('IV + III'))  // ('VII')
+  // console.log(calculator('X + X'))  // ('XX')
+  // console.log(calculator('X + IX'))  // ('XIX')
+
+
+  // console.log(calculator('X - I'))  // ('IX')
+  // console.log(calculator('V - IV'))  // ('I')
+  // console.log(calculator('IV - IV'))  // ('')
+  // console.log(calculator('I - X'))  // ('')
+  // console.log(calculator('IV - V'))  // ('')
+
+
+  // console.log(calculator('X * X'))  // ('C')
+  // console.log(calculator('IV * X'))  // ('XL')
+  // console.log(calculator('V * I'))  // ('V')
+  // console.log(calculator('V * V'))  // ('XXV')
+
+
+  // console.log(calculator('X / I'))  // ('X')
+  // console.log(calculator('VI / II'))  // ('III')
+  // console.log(calculator('V / IV'))  // ('I')
+  // console.log(calculator('II / IV'))  // ('')
 
 
 // // 'должен выбрасывать ошибку на некорректных данных'
