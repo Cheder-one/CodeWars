@@ -1,47 +1,58 @@
 function calculator(string) {
-  const splittedStr = string.split(/\s+/);
+  const rangeArabic = /^([1-9]|10)$/;
+  const allowOperators = /^[\/\*\-\+]$/;
+  const rangeRoman = /^(X|(IX|IV|V?I{0,3}))$/;
+  string = string.trim();
   const romanNumbers = [""];
+  const splittedStr = string.split(/\s+/);
 
-  // Проверка на наличие строго двух операндов и одного оператора
-  const operator =
-    splittedStr.filter((el) => regex.allowOperators.test(el));
-  const arabicOperands =
-    splittedStr.filter((el) => regex.allArabicNum.test(el));
-  const romanOperands =
-    splittedStr.filter((el) => regex.allRomanNum.test(el));
+  const operator = splittedStr.filter((el) => allowOperators.test(el));
+  const arabicNum = splittedStr.filter((el) => rangeArabic.test(el));
+  const romanNum = splittedStr.filter(
+    (el) => rangeRoman.test(el) && Boolean(el.trim())
+  );
 
-  if (operator.length !== 1) {
-    console.log(operator);
-    return "There can be only 1 operator";
-  } 
+  try {
+    // Проверка на наличие двух операндов и их значений
+    if (arabicNum.length !== 2 && romanNum.length === 0) {
+      throw new Error(
+        "Должно быть 2 операнда со значениями от 1 до 10"
+      );
+    } else if (arabicNum.length === 0 && romanNum.length !== 2) {
+      throw new Error(
+        "Должно быть 2 операнда со значениями от 1 до 10"
+      );
+    }
 
-  // if (arabicOperands.length !== 2) {
-  //   console.log('arabicOperands:',arabicOperands);
-  //   return "There can be only 2 Arabic operands";
-  // } 
-  // else if (romanOperands.length !== 2) {
-  //   console.log('romanOperands:',romanOperands);
-  //   return "There can be only 2 Roman operands";
-  // } 
+    // Проверка оператора
+    if (!allowOperators.test(operator)) {
+      throw new Error(
+        "Выражение должно иметь один оператор из: |+|-|*|/|"
+      );
+    }
 
-  // Проверка оператора
-  if (!regex.allowOperators.test(operator)) {
-    return "Invalid operator!";
+    // Проверка операндов на одинаковость систем счета
+    if (arabicNum.length === 1 && romanNum.length === 1) {
+      throw new Error(
+        "Система счета должна быть только Римской или только Арабской"
+      );
+    }
+  } catch (error) {
+    console.log(error);
   }
 
-  // Проверка вида системы счета
-  if (arabicOperands.length === 2) {
-    const arabicResult = Math.floor(eval(string));
+  // Выбор способа вычисления согласно системе счета
+  if (arabicNum.length === 2) {
+    let arabicResult = Math.floor(eval(string));
     return String(arabicResult);
-  } 
-  else if (romanOperands.length === 2) {
+  } else if (romanNum.length === 2) {
     createRomanNumbers();
 
     // Узнаем значение числа по индексу
     for (let i = 0; i < splittedStr.length; i++) {
-      const romanValue = romanNumbers.indexOf(splittedStr[i]);
-      if (romanValue > 0) {
-        splittedStr[i] = romanValue;
+      const romanNum = romanNumbers.indexOf(splittedStr[i]);
+      if (romanNum > 0) {
+        splittedStr[i] = romanNum;
       }
     }
 
@@ -93,24 +104,13 @@ function calculator(string) {
   }
 }
 
-function regExp() {
-  return {
-    allRomanNum: /^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/,
-    allArabicNum: /^-?\d+\.?\d*$/,
-    allowOperators: /^[\/\*\-\+]$/,
-    rangeArabic: /^([1-9]|10)$/,
-    rangeRoman: /^(X|(IX|IV|V?I{0,3}))$/,
-  };
-}
-const regex = regExp()
-
-console.log(calculator('1 + 1')) // ('2');
-console.log(calculator('10 - 1')) // ('9');
-console.log(calculator('4 - 4')) // ('0');
-console.log(calculator('4 - 5')) // ('-1');
-console.log(calculator('10 * 10')) // ('100');
-console.log(calculator('10 % 1')) // ('10');
-console.log(calculator('0 / 4')) // ('0');
+console.log(calculator("")); // ('2');
+console.log(calculator("10 - 1")); // ('9');
+console.log(calculator("4 - 4")); // ('0');
+console.log(calculator("4 - 5")); // ('-1');
+console.log(calculator("10 * 10")); // ('100');
+console.log(calculator("10 % 1")); // ('10');
+console.log(calculator("0 / 4")); // ('0');
 
 console.log(calculator("I + I")); // ('II');
 console.log(calculator("X - I")); // ('IX');
@@ -125,24 +125,24 @@ console.log(calculator("V / IV")); // ('I');
 console.log(calculator("V % IV")); // ('10');
 
 // 'должен выбрасывать ошибку на некорректных данных'
-calculator(""); // toThrowError();
-calculator(" "); // toThrowError();
-calculator("     "); // toThrowError();
-calculator("4"); // toThrowError();
-calculator("+"); // toThrowError();
-calculator("++1"); // toThrowError();
-calculator("V"); // toThrowError();
-calculator("3 % 4"); // toThrowError();
-calculator("1 + 1 + 1"); // toThrowError();
-calculator("11 + 1"); // toThrowError();
-calculator("1 + 11"); // toThrowError();
-calculator("XI + I"); // toThrowError();
-calculator("I + XI"); // toThrowError();
-calculator("1 + V"); // toThrowError();
-calculator("I + 1"); // toThrowError();
-calculator("5 / 0"); // toThrowError();
-calculator("0 + 1"); // toThrowError();
-calculator("1 + 0"); // toThrowError();
+console.log("1:", calculator("")); // toThrowError();
+console.log("2:", calculator(" ")); // toThrowError();
+console.log("3:", calculator("     ")); // toThrowError();
+console.log("4:", calculator("4")); // toThrowError();
+console.log("5:", calculator("+")); // toThrowError();
+console.log("6:", calculator("++1")); // toThrowError();
+console.log("7:", calculator("V")); // toThrowError();
+console.log("8:", calculator("3 % 4")); // toThrowError();
+console.log("9:", calculator("1 + 1 + 1")); // toThrowError();
+console.log("10:", calculator("11 + 1")); // toThrowError();
+console.log("11:", calculator("1 + 11")); // toThrowError();
+console.log("12:", calculator("XI + I")); // toThrowError();
+console.log("13:", calculator("I + XI")); // toThrowError();
+console.log("14:", calculator("1 + V")); // toThrowError();
+console.log("15:", calculator("I + 1")); // toThrowError();
+console.log("16:", calculator("5 / 0")); // toThrowError();
+console.log("17:", calculator("0 + 1")); // toThrowError();
+console.log("18:", calculator("1 + 0")); // toThrowError();
 
 // console.log(calculator('1 + 1')); // );('2');
 // console.log(calculator('1 + 2')); // ('3');
