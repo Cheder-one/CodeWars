@@ -7,32 +7,32 @@ function calculator(string) {
   const splittedStr = string.split(/\s+/);
 
   const operator = splittedStr.filter((el) => allowOperators.test(el));
-  const arabicNum = splittedStr.filter((el) => rangeArabic.test(el));
-  const romanNum = splittedStr.filter(
+  const arabicOperands = splittedStr.filter((el) => rangeArabic.test(el));
+  const romanOperands = splittedStr.filter(
     (el) => rangeRoman.test(el) && Boolean(el.trim())
   );
-
+  
   try {
+    const conditionOperand_Value = 
+      "Должно быть 2 операнда с натуральными значениями от 1 до 10"
+      
     // Проверка на наличие двух операндов и их значений
-    if (arabicNum.length !== 2 && romanNum.length === 0) {
-      throw new Error(
-        "Должно быть 2 операнда со значениями от 1 до 10"
-      );
-    } else if (arabicNum.length === 0 && romanNum.length !== 2) {
-      throw new Error(
-        "Должно быть 2 операнда со значениями от 1 до 10"
-      );
+    if (arabicOperands.length !== 2 && romanOperands.length === 0) {
+      throw new Error(conditionOperand_Value);
+    } else if (arabicOperands.length === 0 && romanOperands.length !== 2) {
+      throw new Error(conditionOperand_Value);
     }
 
     // Проверка оператора
     if (!allowOperators.test(operator)) {
       throw new Error(
-        "Выражение должно иметь один оператор из: |+|-|*|/|"
+        `Выражение должно иметь один оператор.
+        Доступные операторы: |+|-|*|/|`
       );
     }
 
     // Проверка операндов на одинаковость систем счета
-    if (arabicNum.length === 1 && romanNum.length === 1) {
+    if (arabicOperands.length === 1 && romanOperands.length === 1) {
       throw new Error(
         "Система счета должна быть только Римской или только Арабской"
       );
@@ -42,17 +42,17 @@ function calculator(string) {
   }
 
   // Выбор способа вычисления согласно системе счета
-  if (arabicNum.length === 2) {
+  if (arabicOperands.length === 2) {
     let arabicResult = Math.floor(eval(string));
     return String(arabicResult);
-  } else if (romanNum.length === 2) {
+  } else if (romanOperands.length === 2) {
     createRomanNumbers();
 
     // Узнаем значение числа по индексу
     for (let i = 0; i < splittedStr.length; i++) {
-      const romanNum = romanNumbers.indexOf(splittedStr[i]);
-      if (romanNum > 0) {
-        splittedStr[i] = romanNum;
+      const romanOperands = romanNumbers.indexOf(splittedStr[i]);
+      if (romanOperands > 0) {
+        splittedStr[i] = romanOperands;
       }
     }
 
@@ -65,10 +65,6 @@ function calculator(string) {
     }
     return romanResult;
   }
-
-  // Проверка диапазона чисел
-
-  // Проверка числа на целое число
 
   function createRomanNumbers() {
     const lookup = {
@@ -104,7 +100,7 @@ function calculator(string) {
   }
 }
 
-console.log(calculator("")); // ('2');
+console.log(calculator("1.4 + 1,3")); // ('2');
 console.log(calculator("10 - 1")); // ('9');
 console.log(calculator("4 - 4")); // ('0');
 console.log(calculator("4 - 5")); // ('-1');
@@ -124,26 +120,27 @@ console.log(calculator("II / IV")); // ('');
 console.log(calculator("V / IV")); // ('I');
 console.log(calculator("V % IV")); // ('10');
 
-// 'должен выбрасывать ошибку на некорректных данных'
-console.log("1:", calculator("")); // toThrowError();
-console.log("2:", calculator(" ")); // toThrowError();
-console.log("3:", calculator("     ")); // toThrowError();
-console.log("4:", calculator("4")); // toThrowError();
-console.log("5:", calculator("+")); // toThrowError();
-console.log("6:", calculator("++1")); // toThrowError();
-console.log("7:", calculator("V")); // toThrowError();
-console.log("8:", calculator("3 % 4")); // toThrowError();
-console.log("9:", calculator("1 + 1 + 1")); // toThrowError();
-console.log("10:", calculator("11 + 1")); // toThrowError();
-console.log("11:", calculator("1 + 11")); // toThrowError();
-console.log("12:", calculator("XI + I")); // toThrowError();
-console.log("13:", calculator("I + XI")); // toThrowError();
-console.log("14:", calculator("1 + V")); // toThrowError();
-console.log("15:", calculator("I + 1")); // toThrowError();
-console.log("16:", calculator("5 / 0")); // toThrowError();
-console.log("17:", calculator("0 + 1")); // toThrowError();
-console.log("18:", calculator("1 + 0")); // toThrowError();
+// // 'должен выбрасывать ошибку на некорректных данных'
+// console.log("1:", calculator("")); // toThrowError();
+// console.log("2:", calculator(" ")); // toThrowError();
+// console.log("3:", calculator("     ")); // toThrowError();
+// console.log("4:", calculator("4")); // toThrowError();
+// console.log("5:", calculator("+")); // toThrowError();
+// console.log("6:", calculator("++1")); // toThrowError();
+// console.log("7:", calculator("V")); // toThrowError();
+// console.log("8:", calculator("3 % 4")); // toThrowError();
+// console.log("9:", calculator("1 + 1 + 1")); // toThrowError();
+// console.log("10:", calculator("11 + 1")); // toThrowError();
+// console.log("11:", calculator("1 + 11")); // toThrowError();
+// console.log("12:", calculator("XI + I")); // toThrowError();
+// console.log("13:", calculator("I + XI")); // toThrowError();
+// console.log("14:", calculator("1 + V")); // toThrowError();
+// console.log("15:", calculator("I + 1")); // toThrowError();
+// console.log("16:", calculator("5 / 0")); // toThrowError();
+// console.log("17:", calculator("0 + 1")); // toThrowError();
+// console.log("18:", calculator("1 + 0")); // toThrowError();
 
+//--------------------------
 // console.log(calculator('1 + 1')); // );('2');
 // console.log(calculator('1 + 2')); // ('3');
 // console.log(calculator('4 + 3')); // ('7');
