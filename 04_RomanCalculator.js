@@ -38,10 +38,10 @@ function calculator(string) {
   }
 
   // Выбор способа вычисления согласно системе счета
-  if (arabicOperands.length === 2) {
+  if (arabicOperands.length > 0) {
     let arabicResult = Math.floor(eval(string));
     return String(arabicResult);
-  } else if (romanOperands.length === 2) {
+  } else if (romanOperands.length > 0) {
     createRomanNumbers();
 
     // Узнаем значение числа по индексу
