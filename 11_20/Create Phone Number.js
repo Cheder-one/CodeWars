@@ -1,0 +1,7 @@
+function createPhoneNumber(num) {
+   const numSlice = (a, b) => num.slice(a, b).join('');
+   return `(${numSlice(0, 3)}) ${numSlice(3, 6)}-${numSlice(6, num.length)}`
+}
+
+console.log(createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])); // "(123) 456-7890"
+
