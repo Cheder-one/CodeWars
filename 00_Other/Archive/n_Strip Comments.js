@@ -13,5 +13,5 @@ function solution(input, markers) {
 }
 
 
-const callFn = solution(" $lol # apples, \npears # and bananas\ngrapes\nbananas !apples", ["$", "#", "!"])
+const callFn = solution(" $lol # apples, \npears pears # and bananas\ngrapes\nbananas !apples", ["$", "#", "!"])
 console.log(callFn);
