@@ -30,10 +30,8 @@ var uniqueInOrder = function (iterable) {
       iterable = iterable.split('');
    } catch { }
 
-   iterable.reduce((sum, n) => {
-      if (sum !== n) {
-         return sum+n
-      }
+   return iterable.reduce((sum, n) => {
+      
    })
 };
 
