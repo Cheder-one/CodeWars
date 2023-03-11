@@ -13,15 +13,22 @@
 //---------------------------------------------------------
 
 class Solution {
-  twoSum(numbers, target) {}
+  twoSum(numbers, target) {
+    for (let i = 0; i < numbers.length; i++) {
+      const mainEl = numbers[i];
+      for (let j = 1; j < numbers.length; j++) {
+        const el = numbers[j];
+        const res = mainEl + el;
+        if (res === target) {
+          return [i, j].sort((a, b) => a - b);
+        }
+      }
+    }
+  }
 }
 
-numbers = [7, 2, 11, 15];
+numbers = [1, 7, 4, 11, 15, 2];
 target = 9;
 
 const res = new Solution().twoSum(numbers, target);
 console.log(res);
-
-// 1) Это найти те два числа которые дают в сумме target
-// 2) Узнать и вернуть их индексы
-// 3) Отсортировать индексы по возрастанию
