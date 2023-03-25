@@ -1,5 +1,4 @@
 function getPINs(observed) {
-  // Объект с соседними цифрами
   const adjacent = {
     1: ["1", "2", "4"],
     2: ["1", "2", "3", "5"],
@@ -13,35 +12,24 @@ function getPINs(observed) {
     0: ["0", "8"],
   };
 
-  // Массив результата
   let result = [];
 
-  // Функция для генерации комбинаций
   function generatePins(pin) {
-    pin;
-    pin.length;
-    // Если длина PIN равна длине наблюдаемого PIN, добавить его в результат и выйти из функции
     if (pin.length === observed.length) {
       result.push(pin);
       return;
     }
-    pin.length;
-    // Получить текущую цифру из наблюдаемого PIN
     let currentDigit = observed[pin.length];
 
-    // Получить все соседние цифры для текущей цифры
     let neighbors = adjacent[currentDigit];
 
-    // Для каждой соседней цифры вызвать функцию снова с добавлением этой цифры к PIN
     for (let neighbor of neighbors) {
       generatePins(pin + neighbor);
     }
   }
 
-  // Вызвать функцию с пустой строкой
   generatePins("");
 
-  // Вернуть результат
   return result;
 }
 
