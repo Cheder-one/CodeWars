@@ -94,45 +94,45 @@ function calculator(string) {
 // Только арабские или только римские
 // 0 в римском ответе == ''
 
-console.log(calculator("1.4 + 1,3")); // Error только целые числа
-console.log(calculator("10 - 1")); // ('9');
-console.log(calculator("4 - 4")); // ('0');
-console.log(calculator("4 - 5")); // ('-1');
-console.log(calculator("10 * 10")); // ('100');
-console.log(calculator("10 % 1")); // ('10');
-console.log(calculator("0 / 4")); // ('0');
+// console.log(calculator("1.4 + 1,3")); // Error только целые числа
+// console.log(calculator("10 - 1")); // ('9');
+// console.log(calculator("4 - 4")); // ('0');
+// console.log(calculator("4 - 5")); // ('-1');
+// console.log(calculator("10 * 10")); // ('100');
+// console.log(calculator("10 % 1")); // ('10');
+// console.log(calculator("0 / 4")); // ('0');
 
-console.log(calculator("I + I")); // ('II');
-console.log(calculator("X - I")); // ('IX');
-console.log(calculator("IV - IV")); // ('');
-console.log(calculator("I - X")); // ('');
-console.log(calculator("X * X")); // ('C');
-console.log(calculator("V * I")); // ('V');
-console.log(calculator("X / I")); // ('X');
-console.log(calculator("VI / II")); // ('III');
-console.log(calculator("II / IV")); // ('');
-console.log(calculator("V / IV")); // ('I');
-console.log(calculator("V % IV")); // ('10');
+// console.log(calculator("I + I")); // ('II');
+// console.log(calculator("X - I")); // ('IX');
+// console.log(calculator("IV - IV")); // ('');
+// console.log(calculator("I - X")); // ('');
+// console.log(calculator("X * X")); // ('C');
+// console.log(calculator("V * I")); // ('V');
+// console.log(calculator("X / I")); // ('X');
+// console.log(calculator("VI / II")); // ('III');
+// console.log(calculator("II / IV")); // ('');
+// console.log(calculator("V / IV")); // ('I');
+// console.log(calculator("V % IV")); // ('10');
 
-// 'должен выбрасывать ошибку на некорректных данных'
-console.log("1:", calculator("")); // toThrowError();
-console.log("2:", calculator(" ")); // toThrowError();
-console.log("3:", calculator("     ")); // toThrowError();
-console.log("4:", calculator("4")); // toThrowError();
-console.log("5:", calculator("+")); // toThrowError();
-console.log("6:", calculator("++1")); // toThrowError();
-console.log("7:", calculator("V")); // toThrowError();
-console.log("8:", calculator("3 % 4")); // toThrowError();
-console.log("9:", calculator("1 + 1 + 1")); // toThrowError();
-console.log("10:", calculator("11 + 1")); // toThrowError();
-console.log("11:", calculator("1 + 11")); // toThrowError();
-console.log("12:", calculator("XI + I")); // toThrowError();
-console.log("13:", calculator("I + XI")); // toThrowError();
-console.log("14:", calculator("1 + V")); // toThrowError();
-console.log("15:", calculator("I + 1")); // toThrowError();
-console.log("16:", calculator("5 / 0")); // toThrowError();
-console.log("17:", calculator("0 + 1")); // toThrowError();
-console.log("18:", calculator("1 + 0")); // toThrowError();
+// // 'должен выбрасывать ошибку на некорректных данных'
+// console.log("1:", calculator("")); // toThrowError();
+// console.log("2:", calculator(" ")); // toThrowError();
+// console.log("3:", calculator("     ")); // toThrowError();
+// console.log("4:", calculator("4")); // toThrowError();
+// console.log("5:", calculator("+")); // toThrowError();
+// console.log("6:", calculator("++1")); // toThrowError();
+// console.log("7:", calculator("V")); // toThrowError();
+// console.log("8:", calculator("3 % 4")); // toThrowError();
+// console.log("9:", calculator("1 + 1 + 1")); // toThrowError();
+// console.log("10:", calculator("11 + 1")); // toThrowError();
+// console.log("11:", calculator("1 + 11")); // toThrowError();
+// console.log("12:", calculator("XI + I")); // toThrowError();
+// console.log("13:", calculator("I + XI")); // toThrowError();
+// console.log("14:", calculator("1 + V")); // toThrowError();
+// console.log("15:", calculator("I + 1")); // toThrowError();
+// console.log("16:", calculator("5 / 0")); // toThrowError();
+// console.log("17:", calculator("0 + 1")); // toThrowError();
+// console.log("18:", calculator("1 + 0")); // toThrowError();
 
 //--------------------------
 // console.log(calculator('1 + 1')); // );('2');
