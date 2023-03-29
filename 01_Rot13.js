@@ -28,9 +28,7 @@ function rot13(text) {
 }
 
 //-------------Refactoring-------------
-// function rot13(text) {
-
-// }
+function rot13(text) {}
 
 // console.log(rot13("Test")); // "Grfg"
 console.log(rot13("Ruby is cool!")); // 'Ehol vf pbby!'
@@ -40,8 +38,6 @@ console.log(rot13("Ruby is cool!")); // 'Ehol vf pbby!'
 
 "A".charCodeAt();
 "Z".charCodeAt();
-
-console.log('"a".charCodeAt()', "a".charCodeAt()); // 97
 
 //-------------Refactoring-------------
 // function rot13(text) {
