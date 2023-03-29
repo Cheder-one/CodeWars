@@ -28,26 +28,26 @@ function rot13(text) {
 }
 
 //-------------Refactoring-------------
-function rot13(text) {}
+function rot13(text) {
+  return text.replace(/[a-zA-Z]/g, (char) => {
+    const charInAsci = char.charCodeAt();
+    const offset = charInAsci >= 97 ? 97 : 65;
+    const crypt = ((charInAsci + 13 - offset) % 26) + offset;
+    return String.fromCharCode(crypt);
+  });
+}
 
-// console.log(rot13("Test")); // "Grfg"
 console.log(rot13("Ruby is cool!")); // 'Ehol vf pbby!'
+
+//-------------OR-------------
+function rot13(message) {
+  var abc =
+    "abcdefghijklmnopqrstuvwxyzabcdefghijklmABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM";
+  return message.replace(/[a-z]/gi, (c) => abc[abc.indexOf(c) + 13]);
+}
 
 "a".charCodeAt();
 "z".charCodeAt();
 
 "A".charCodeAt();
 "Z".charCodeAt();
-
-//-------------Refactoring-------------
-// function rot13(text) {
-//   return text.replace(/[a-zA-Z]/g, (char) => {
-//     let charCode = char.charCodeAt(0);
-//     if (charCode >= 65 && charCode <= 90) {
-//       charCode = ((charCode - 65 + 13) % 26) + 65;
-//     } else if (charCode >= 97 && charCode <= 122) {
-//       charCode = ((charCode - 97 + 13) % 26) + 97;
-//     }
-//     return String.fromCharCode(charCode);
-//   });
-// }
