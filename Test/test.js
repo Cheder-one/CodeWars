@@ -1,18 +1,15 @@
+const findUniq = require("./01_File");
 const chai = require("chai");
 const assert = chai.assert;
-const rot13 = require("./01_File");
+chai.config.truncateThreshold = 0;
 
-describe("Tests", function () {
-  it("Sample tests", function () {
-    for (const [input, expected] of [
-      ["test", "grfg"],
-      ["Test", "Grfg"],
-    ]) {
-      assert.strictEqual(
-        rot13(input),
-        expected,
-        `Test failed with messsage = '${input}'`
-      );
-    }
+describe("Example Tests", () => {
+  it("Tests", () => {
+    assert.strictEqual(findUniq([1, 0, 0]), 1);
+    assert.strictEqual(findUniq([0, 1, 0]), 1);
+    assert.strictEqual(findUniq([0, 0, 1]), 1);
+    assert.strictEqual(findUniq([1, 1, 1, 2, 1, 1]), 2);
+    assert.strictEqual(findUniq([1, 1, 2, 1, 1]), 2);
+    assert.strictEqual(findUniq([3, 10, 3, 3, 3]), 10);
   });
 });

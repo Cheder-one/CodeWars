@@ -95,7 +95,7 @@ function calculator(string) {
 // 0 в римском ответе == ''
 
 // console.log(calculator("1.4 + 1,3")); // Error только целые числа
-// console.log(calculator("10 - 1")); // ('9');
+console.log(calculator("10 - 1")); // ('9');
 // console.log(calculator("4 - 4")); // ('0');
 // console.log(calculator("4 - 5")); // ('-1');
 // console.log(calculator("10 * 10")); // ('100');

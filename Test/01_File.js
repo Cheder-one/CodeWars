@@ -1,13 +1,6 @@
-function rot13(text) {
-  return text.replace(/[a-zA-Z]/g, (char) => {
-    let charCode = char.charCodeAt(0);
-    if (charCode >= 65 && charCode <= 90) {
-      charCode = ((charCode - 65 + 13) % 26) + 65;
-    } else if (charCode >= 97 && charCode <= 122) {
-      charCode = ((charCode - 97 + 13) % 26) + 97;
-    }
-    return String.fromCharCode(charCode);
-  });
+function findUniq(arr) {
+  arr.sort((a, b) => a - b);
+  return arr[0] == arr[1] ? arr.pop() : arr[0];
 }
 
-module.exports = rot13;
+module.exports = findUniq;
