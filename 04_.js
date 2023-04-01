@@ -28,6 +28,10 @@ function solution(str) {
     ? []
     : (str.length % 2 ? str + "_" : str).match(/../g);
 }
+//-------------Refactoring-------------
+function solution(str) {
+  return (str + "_").match(/.{2}/g) || [];
+}
 
 solution("abcdefg"); // ["ab", "cd", "ef", "g_"];
 // solution("abcdef"); // ["ab", "cd", "ef"];
