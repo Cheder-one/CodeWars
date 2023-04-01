@@ -24,9 +24,11 @@ function solution(str) {
 
 //-------------OR-------------
 function solution(str) {
-  return (str.length % 2 ? str + "_" : str).match(/../g);
+  return str.length === 0
+    ? []
+    : (str.length % 2 ? str + "_" : str).match(/../g);
 }
 
-// solution("abcdef"); // ["ab", "cd", "ef"];
 solution("abcdefg"); // ["ab", "cd", "ef", "g_"];
+// solution("abcdef"); // ["ab", "cd", "ef"];
 // solution(""); // [];
