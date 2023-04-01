@@ -1,16 +1,24 @@
 function calculator(string) {
+  // Разрешенный диапазон арабских чисел
   const rangeArabic = /^([1-9]|10)$/;
+  // Разрешенные операторы
   const allowOperators = /^[\/\*\-\+]$/;
+  // Разрешенный диапазон римских чисел
+  // (IX|IV|V?I{0,3}) - в строке могут находится IX,IV, от 0 до 3 I, а так же 0 или 1 V перед 0-3 I
   const rangeRoman = /^(X|(IX|IV|V?I{0,3}))$/;
+
   string = string.trim();
+  // Массив для римских чисел, "" - олицетворяет 0
   const romanNumbers = [""];
+  // Разбивка массива в местах наличия любых пробелов
   const splittedStr = string.split(/\s+/);
 
+  // Если элемент проходит регулярное выражение => return el
   const operator = splittedStr.filter((el) => allowOperators.test(el));
   const arabicOperands = splittedStr.filter((el) => rangeArabic.test(el));
   const romanOperands = splittedStr.filter(
     (el) => rangeRoman.test(el) && Boolean(el.trim())
-  );
+  ); // Если передается пустая строка Boolean(el.trim() не пропустит
 
   // Проверка на наличие двух операндов и их значений
   if (arabicOperands.length !== 2 && romanOperands.length === 0) {
@@ -20,7 +28,7 @@ function calculator(string) {
   }
 
   // Проверка оператора
-  if (!allowOperators.test(operator)) {
+  if (allowOperators.test(operator) === false) {
     return "Выражение должно иметь один оператор. Доступные операторы: |+|-|*|/|";
   }
 
@@ -34,9 +42,9 @@ function calculator(string) {
     let arabicResult = Math.floor(eval(string));
     return String(arabicResult);
   } else if (romanOperands.length > 0) {
-    createRomanNumbers();
+    generateRomanNumbers();
 
-    // Узнаем значение числа по индексу
+    // Узнаем значение римского числа по его индексу
     for (let i = 0; i < splittedStr.length; i++) {
       const romanOperands = romanNumbers.indexOf(splittedStr[i]);
       if (romanOperands > 0) {
@@ -44,17 +52,21 @@ function calculator(string) {
       }
     }
 
+    // Считаем римское выражение в арабском формате (в обычном виде)
     const arabicResult = Math.floor(eval(splittedStr.join("")));
+    // Конвертируем результат обратно в римский
     let romanResult = romanNumbers[arabicResult];
 
     if (arabicResult < 0) {
+      // Если результат < 0, return '' вместо 0
       romanResult = "";
       return romanResult;
     }
     return romanResult;
   }
 
-  function createRomanNumbers() {
+  function generateRomanNumbers() {
+    // lookup - перечень римских цифр из которых можно создать все остальные
     const lookup = {
       M: 1000,
       CM: 900,
@@ -72,7 +84,7 @@ function calculator(string) {
     };
 
     const generateRomanNumbers = (num) => {
-      result = "";
+      let result = "";
       for (const el in lookup) {
         while (num >= lookup[el]) {
           result += el;
@@ -82,6 +94,7 @@ function calculator(string) {
       return result;
     };
 
+    // Генерируем 999 римских цифр
     for (let i = 1; i < 1000; i++) {
       romanNumbers.push(generateRomanNumbers(i));
     }
@@ -95,7 +108,7 @@ function calculator(string) {
 // 0 в римском ответе == ''
 
 // console.log(calculator("1.4 + 1,3")); // Error только целые числа
-console.log(calculator("10 - 1")); // ('9');
+// console.log(calculator("10 - 1")); // ('9');
 // console.log(calculator("4 - 4")); // ('0');
 // console.log(calculator("4 - 5")); // ('-1');
 // console.log(calculator("10 * 10")); // ('100');
@@ -103,7 +116,7 @@ console.log(calculator("10 - 1")); // ('9');
 // console.log(calculator("0 / 4")); // ('0');
 
 // console.log(calculator("I + I")); // ('II');
-// console.log(calculator("X - I")); // ('IX');
+console.log(calculator("X - I")); // ('IX');
 // console.log(calculator("IV - IV")); // ('');
 // console.log(calculator("I - X")); // ('');
 // console.log(calculator("X * X")); // ('C');
