@@ -7,6 +7,7 @@ function calculator(string) {
   // (IX|IV|V?I{0,3}) - в строке могут находится IX,IV, от 0 до 3 I, а так же 0 или 1 V перед 0-3 I
   const rangeRoman = /^(X|(IX|IV|V?I{0,3}))$/;
 
+  // очищаем от возможных пробелов
   string = string.trim();
   // Массив для римских чисел, "" - олицетворяет 0
   const romanNumbers = [""];
@@ -47,7 +48,7 @@ function calculator(string) {
     // Узнаем значение римского числа по его индексу
     for (let i = 0; i < splittedStr.length; i++) {
       const romanOperands = romanNumbers.indexOf(splittedStr[i]);
-      if (romanOperands > 0) {
+      if (romanOperands !== -1) {
         splittedStr[i] = romanOperands;
       }
     }
